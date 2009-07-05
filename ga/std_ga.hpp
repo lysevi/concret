@@ -1,0 +1,64 @@
+#ifndef _std_ga
+#define _std_ga
+
+#include <ga/params.hpp>
+#include <ga/selector.hpp>
+#include <string>
+using namespace std;
+
+typedef pair<int,p_dna> solution;
+
+class dna;
+class selector;
+class mutator;
+class crossover;
+class fitness;
+class bin_dna_generator;
+
+// Какую популяцию сейчас использовать.
+enum populationNumber{
+  FIRST_POPULATION,
+  SECOND_POPULATION
+};
+
+class std_ga
+{
+public:
+  std_ga(selector*s,mutator*m,crossover*c,bin_dna_generator*g);
+  void set_params(const params&param);
+  virtual void addIndivid(const p_dna&individ);
+  virtual string name()const          {return m_name;}
+  virtual void addSuffix(string name) {m_name+=name;}
+  virtual ~std_ga();
+  virtual void   init();
+  virtual void   clean();
+  virtual double oneStep();
+  virtual solution  getSolution(int max_steps,double min_ftn,bool verbose=false);
+  virtual void   setFitness(fitness*ftn);
+
+  virtual family_vector select(const population&p,int count);
+
+  void enable_dump();
+  void disable_dump();
+protected:
+  population* cur_population();
+  population* other_population();
+  void        switch_population();
+public:
+  population      *m_p_first;
+  population      *m_p_second;
+  populationNumber m_p_number;
+  unsigned int     m_p_position;
+  
+  selector  *m_s;
+  mutator   *m_m;
+  crossover *m_c;
+  fitness   *m_f;
+  bin_dna_generator*m_g;
+  params     m_param;
+  string     m_name;
+  bool       m_dump_enable;
+  int        m_generation_number; // номер поколения
+};
+
+#endif
