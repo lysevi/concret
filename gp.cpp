@@ -23,18 +23,6 @@ int main(int argc,char*argv[])
     LOG("usage: "<<argv[0]<<" data.csv");
     return -1;
   }
-
-//   if(argc!=9){
-//     LOG("usage: "<<argv[0]<<" x_data.csv y7_data.csv y_data.csv psize(200) selection_percent(0.4)"
-// 	                    " learn_percent(0.75) max_iter(100) max_depth(3)");
-//     LOG("./gp data/akieva_big.csv data/akieva_big_out_7.csv data/akieva_big_out.csv 100 0.2 0.5 10 2")
-//     return -1;
-//   }
-//   psize=boost::lexical_cast<int>(argv[4]);
-//   percent_to_learn=boost::lexical_cast<double>(argv[5]);
-//   percent_to_learn=boost::lexical_cast<double>(argv[6]);
-//   max_steps=boost::lexical_cast<int>(argv[7]);
-//   max_depth=boost::lexical_cast<int>(argv[8]);
   
   Concrete::CData cdata(argv[1]);
   cdata.init();
