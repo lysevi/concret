@@ -5,7 +5,8 @@
 
 namespace Tree
 {
-  Generator::Generator(FunctionDB*fdb,int max_depth):m_max_depth(max_depth)
+  Generator::Generator(FunctionDB*fdb,int max_depth,bool fly_mode):m_max_depth(max_depth),
+								   m_fly_mode(fly_mode)
   {
     m_fdb=fdb;
     m_functions=fdb->functions();
@@ -60,8 +61,13 @@ namespace Tree
     int root_num=result.add_node(root_func);
     result.set_root(root_num);
     FunctionNode*node=dynamic_cast<FunctionNode*>((*m_fdb)[root_func].get());
+    int depth;
+    if(m_fly_mode)
+      depth=m_rnd.uniform(1,m_max_depth);
+    else
+      depth=m_max_depth;
     for(int i=0;i<node->argcount();++i)
-      generate_sub_tree(result,root_num,m_max_depth);
+      generate_sub_tree(result,root_num,depth);
     return result;
   }
 };// namespace Tree

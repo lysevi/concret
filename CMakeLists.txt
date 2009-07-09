@@ -61,3 +61,5 @@ ga_executable(sugeno0 sugeno0.cpp cdata fuzzy)
 
 ga_executable(fgp fgp.cpp ga tree fuzzy)
 ga_executable(fgp2 fgp2.cpp ga tree fuzzy)
+
+ga_executable(gp_fly gp_fly.cpp ga tree)
