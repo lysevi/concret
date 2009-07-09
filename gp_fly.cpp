@@ -48,14 +48,20 @@ int main(int argc,char*argv[])
   
   std_ga* sg=new std_ga(sel_r,gp_mtn,c,dg);
   sg->addSuffix("-FlyGenerator");
-  tester test;
-  test.addTest(make_test(new GpFitness(percent_to_learn,&bt_cdata,fdb),
- 			 make_params(mtn_raiting,0.4,psize),
- 			 0,0,
- 			 target_value,max_steps));
-  test.addGA(sg);
-  test.run(10);
 
-//   LOG("results: "<<sln.first);
-//   ftn->check_solution(sln.second,&cdata);
+//   tester test;
+//   test.addTest(make_test(new GpFitness(percent_to_learn,&bt_cdata,fdb),
+//  			 make_params(mtn_raiting,0.4,psize),
+//  			 0,0,
+//  			 target_value,max_steps));
+//   test.addGA(sg);
+//   test.run(10);
+
+  GpFitness*ftn=new GpFitness(percent_to_learn,&bt_cdata,fdb);
+  sg->set_params(make_params(mtn_raiting,0.4,psize));
+  sg->setFitness(ftn);
+  sg->init();
+  solution sln=sg->getSolution(max_steps,target_value,true);
+  LOG("results: "<<sln.first);
+  ftn->check_solution(sln.second,&cdata);
 }
