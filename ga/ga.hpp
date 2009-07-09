@@ -25,7 +25,6 @@
 
 #include <ga/crossover.hpp>
 
-#include <ga/opt_gp.hpp>
 #include <ga/hist_gp.hpp>
 #include <ga/gp_generator_hist.cpp>
 #endif

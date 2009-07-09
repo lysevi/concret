@@ -404,29 +404,6 @@ namespace Tree
     flat_to_tree(iv);
   }
 
-  char Tree::expr_type(int root)const // возращает 1 если в поддереве с корнем root все выражения константны, -1 если выражение константа, 0 если выражение не константа.
-  {
-    NodeMap::const_iterator node_pos=m_nodes.find(root);
-    if(node_pos==m_nodes.end())
-      throw std::logic_error("Tree::is_const_expr: bad root number. "+boost::lexical_cast<std::string>(root));
-    
-    int func_num=node_pos->second;
-    
-    p_BaseNode bn((*m_fdb)[func_num]);
-
-    if(bn->type()==CONST_NODE)
-      return -1;
-
-    if(bn->type()==VAR_NODE)
-      return 0;
-    
-    ivector childs=this->childs_of(root);
-    for(int i=0;i<childs.size();++i)
-      if(expr_type(childs[i])==0)
-	return 0;
-    return 1;
-  }
-
   int Tree::get_node_by_number(const int number)const // Возвращает номер узла по его номеру в дереве
   {
     NodeMap::const_iterator result=m_nodes.find(number);
@@ -435,43 +412,5 @@ namespace Tree
       throw std::logic_error("Tree::get_node_by_number: bad number. "+boost::lexical_cast<std::string>(number));
 
     return result->second;
-  }
-
-  void Tree::compress_const_expr() // Заменяеет константные выражения на их значения (+ 1 2)->(3)
-  {
-    if(m_nodes.size()<2)
-      return;
-    NodeMap::const_iterator node_pos=m_nodes.begin();
-    ivector to_compress; // сдесь будут содержаться узлы, которые представляют их себя константные выражения.
-    for(node_pos;node_pos!=m_nodes.end();++node_pos){
-      char result=expr_type(node_pos->first);
-      if(result==1)
-	to_compress.push_back(node_pos->first);
-    }
-    VarMap vm;
-    BOOST_FOREACH(int node_num,to_compress){
-      // проверяем, на месте ли данный узел.
-      bool found=false;
-      for(node_pos=m_nodes.begin();node_pos!=m_nodes.end();++node_pos)
-	if(node_pos->first==node_num){
-	  found=true;
-	  break;
-	}
-      if(!found)
-	continue;
-      // заменяем константное выражение на её значение.
-      int parent_num=parent_of(node_num);
-      TermType result=eval_node(node_num,vm);
-      LOG(">> "<<m_nodes);
-      this->remove_node(node_num);
-      LOG("|| "<<m_nodes);
-      int con_num=m_fdb->add_constant(result);
-      int new_num=add_node(con_num);
-      if(parent_num==-1){
-	m_root=new_num;
-	return;
-      }
-      connect(parent_num,new_num);
-    }
   }
 };//namespace Tree

@@ -48,7 +48,6 @@ int main(int argc,char*argv[])
   GpCrossover*c=new GpCrossover(fdb,crossover);
   
   //std_ga* sg=new hist_gp(sel_r,gp_mtn,c,dg,10);
-  //std_ga* sg=new opt_gp(sel_r,gp_mtn,c,dg,fdb);
   std_ga* sg=new std_ga(sel_r,gp_mtn,c,dg);
 
   GpFitness*ftn=new GpFitness(percent_to_learn,&bt_cdata,fdb);

@@ -60,13 +60,11 @@ namespace Tree
     std::string save_to_str()const; // Преобразует из строки
     void        restore_from_str(const std::string&s); // Преобразует из строки
 
-    void compress_const_expr(); // Заменяеет константные выражения на их значения (+ 1 2)->(3)
     int get_node_by_number(const int number)const; // Возвращает номер узла по его номеру в дереве
   protected:
     TermType eval_node(int index,const VarMap&var_values); // Вычисляет значения для узла с номером index в зависимости от его типа
     std::string to_str(int pos)const;   // Преобразует рекурсивно в строку узел с номером index и его потомков.
     ivector nodes_in_subtree(int parent)const;//Возврыщает список узлов, которые входят в поддерево,с вершиной в parent
-    char expr_type(int root)const; // возращает 1 если в поддереве с корнем root все выражения константны, -1 если выражение константа, 0 если выражение не константа.
   protected:
     FunctionDB*m_fdb;
     Edges      m_edges;

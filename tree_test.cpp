@@ -164,41 +164,6 @@ int main(int argc,char*argv[])
   f.restore_from_str(mtn_string);
   LOG("loaded="<<f.to_str());
 
-  LOG("compress tree");
-
-  Tree::Tree t_c;
-  t_c.set_fdb(fdb);
-  root=t_c.add_node(0);        // +
-  int left=t_c.add_node(6);    // 0.0
-  int right=t_c.add_node(7);   // 0.1
-  t_c.set_root(root);
-  t_c.connect(root,left);
-  t_c.connect(root,right);
-  LOG("+t_c="<<t_c.to_str()<<" "<<t_c.flat());
-  t_c.compress_const_expr();
-  LOG("-t_c="<<t_c.to_str()<<" "<<t_c.flat());
-  t_c.compress_const_expr();
-  LOG("=t_c="<<t_c.to_str()<<" "<<t_c.flat());
-  
-  LOG("compress tree 2");
-
-  Tree::Tree t_c2;
-  t_c2.set_fdb(fdb);
-  int plus=t_c2.add_node(0);   // +
-  int minus=t_c2.add_node(1);  // -
-  int c_01=t_c2.add_node(7);   // 0.1
-  int c_02=t_c2.add_node(8);   // 0.2
-  int v=t_c2.add_node(4);      // x1
-
-  t_c2.set_root(plus);
-  t_c2.connect(plus,minus);
-  t_c2.connect(plus,v);
-  t_c2.connect(minus,c_01);
-  t_c2.connect(minus,c_02);
-
-  LOG("+t_c2="<<t_c2.to_str()<<" "<<t_c2.flat());
-  t_c2.compress_const_expr();
-  LOG("-t_c2="<<t_c2.to_str()<<" "<<t_c2.flat());
   LOG("FUZZY")
   {
       Tree::FunctionDB* ffdb=new Tree::FunctionDB;
