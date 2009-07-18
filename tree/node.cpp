@@ -9,17 +9,15 @@
 
 namespace Tree
 {
-  std::string BaseNode::name()const
-  {
-    throw std::logic_error("BaseNode::name not implemented");
-  }
+  BaseNode::BaseNode(const std::string _name):name(_name)
+  {}
   
   TermType    BaseNode::eval()const
   {
     throw std::logic_error("BaseNode::name not implemented");
   }
   
-  FunctionNode::FunctionNode(const std::string&name,int argc_count,const FuncContainer& fc):m_name(name),
+  FunctionNode::FunctionNode(const std::string&name,int argc_count,const FuncContainer& fc):BaseNode(name),
 											    m_fc(fc),
 											    m_argc_count(argc_count)
   {}
@@ -27,7 +25,7 @@ namespace Tree
   void FunctionNode::check_arg_count(const Args&args)const throw(std::logic_error)
   {
     if(args.size()!=m_argc_count)
-      throw std::logic_error("FunctionNode::check_arg_count: Length error. "+m_name+' '
+      throw std::logic_error("FunctionNode::check_arg_count: Length error. "+name+' '
 			     +boost::lexical_cast<std::string>(m_argc_count)
 			     +" "
 			     +boost::lexical_cast<std::string>(args.size()));    
@@ -39,20 +37,16 @@ namespace Tree
     return m_fc(args);
   }
 
-  ConstNode::ConstNode(TermType value):m_value(value)
+  ConstNode::ConstNode(TermType value):BaseNode(boost::lexical_cast<std::string>(m_value)),
+				       m_value(value)
   {}
-  
-  std::string ConstNode::name()const
-  {
-    return boost::lexical_cast<std::string>(m_value);
-  }
   
   TermType    ConstNode::eval()const
   {
     return m_value;
   }
 
-  VarNode::VarNode(std::string name):m_name(name)
+  VarNode::VarNode(std::string name):BaseNode(name)
   {};
 
   VarFuncNode::VarFuncNode(std::string name,std::string var_name,const int argc_count,const FuncContainer& fc):FunctionNode(name,argc_count,fc),

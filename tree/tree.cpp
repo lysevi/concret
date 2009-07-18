@@ -131,10 +131,10 @@ namespace Tree
       case(CONST_NODE):{return node->eval();};
 
       case(VAR_NODE):{
-	VarMap::const_iterator pos=var_values.find(node->name());
+	VarMap::const_iterator pos=var_values.find(node->name);
 	if(pos==var_values.end()){
 	  LOG(var_values);
-	  throw std::logic_error("Tree::eval_node(VAR_NODE): bad variable name. "+node->name());
+	  throw std::logic_error("Tree::eval_node(VAR_NODE): bad variable name. "+node->name);
 	}
 	else
 	  return pos->second;};
@@ -340,10 +340,10 @@ namespace Tree
       case(CONST_NODE):{return boost::lexical_cast<std::string>(node->eval());};
 	
       case(VAR_NODE):{
-	return node->name();};
+	return node->name;};
 	
       case(FUNCTION_NODE):{
-	std::string result="("+node->name();
+	std::string result="("+node->name;
 	ivector childs=this->childs_of(pos);
 	for(int i=0;i<childs.size();++i){
 	  int c=childs[i];
@@ -354,7 +354,7 @@ namespace Tree
       case(VARFUNC_NODE):{
 	VarFuncNode*vfn=dynamic_cast<VarFuncNode*>(node.get());
 	std::string var_name=vfn->var_name();
-	return "["+vfn->name()+' '+var_name+']';
+	return "["+vfn->name+' '+var_name+']';
       };
       default:{ throw std::logic_error("Tree::eval_node: bad type.");}
       };

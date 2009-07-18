@@ -24,9 +24,10 @@ namespace Tree
   class BaseNode
   {
   public:
+    BaseNode(const std::string _name);
     virtual NodeType    type()const=0;
-    virtual std::string name()const;
     virtual TermType    eval()const;
+    std::string name;
   };//BaseNode
 
   typedef boost::shared_ptr<BaseNode> p_BaseNode;
@@ -36,14 +37,12 @@ namespace Tree
   public:
     FunctionNode(const std::string&name,int argc_count,const FuncContainer& fc);
     NodeType    type()const {return FUNCTION_NODE;};
-    std::string name()const {return m_name;}
     virtual TermType    eval(const Args&args)const;
     int         argcount()const {return m_argc_count;};
   protected:
     void check_arg_count(const Args&args)const throw(std::logic_error);
   protected:
     FuncContainer m_fc;
-    std::string   m_name;
     int           m_argc_count;
   };
 
@@ -63,9 +62,6 @@ namespace Tree
   public:
     VarNode(std::string name);
     NodeType    type()const {return VAR_NODE;};
-    std::string name()const {return m_name;};
-  protected:
-    std::string m_name;
   };
 
   class VarFuncNode: public FunctionNode
