@@ -59,6 +59,8 @@ public:
   string     m_name;
   bool       m_dump_enable;
   int        m_generation_number; // номер поколения
+  dvector    m_times;             // содержит среднее время по последним 10 замерам.
+  int        m_times_index;       // текущий номер в m_times для записи.
 };
 
 #endif

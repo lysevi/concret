@@ -9,6 +9,7 @@
 
 #include "std_ga.hpp"
 
+#include <numeric>
 #include <algorithm>
 #include <boost/foreach.hpp>
 #include <boost/timer.hpp>
@@ -26,7 +27,9 @@ std_ga::std_ga(selector*s,mutator*m,crossover*c,bin_dna_generator*g):m_s(s),
 								     m_p_number(FIRST_POPULATION),
 								     m_p_first(NULL),
 								     m_p_second(NULL),
-								     m_p_position(0)
+								     m_p_position(0),
+								     m_times(10,0),
+								     m_times_index(0)
 {}
 
 std_ga::~std_ga()
@@ -129,16 +132,19 @@ solution std_ga::getSolution(int max_steps,double min_ftn,bool verbose)
   for(int i=0;i<max_steps;i++){
     t0.restart();
     double best_ftn=oneStep();
+    double time=t0.elapsed();
+    m_times[m_times_index%m_times.size()]=time;
+    m_times_index++;
     if(verbose){
       p_dna best_dna=best(*cur_population());
       double max_dist=m_f->max_distance(best_dna);
       if(max_dist!=0.0){
 	PRINT("step="<<i<<" p="<<cur_population()->size()<<" best="<<best_ftn<<", "<<max_dist
-	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<t0.elapsed());
+	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size());
       }
       else{
 	PRINT("step="<<i<<" p="<<cur_population()->size()<<" best="<<best_ftn
-	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<t0.elapsed());
+	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size());
       }
     }
 
