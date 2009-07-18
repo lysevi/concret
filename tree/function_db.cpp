@@ -19,7 +19,7 @@ namespace Tree
   
   int FunctionDB::add_function(FunctionNode*f)
   {
-    m_functions[FunctionDB::m_next_number++]=p_BaseNode(dynamic_cast<BaseNode*>(f));
+    m_functions[FunctionDB::m_next_number++]=p_BaseNode((BaseNode*)(f));
     return m_next_number-1;
   }
   

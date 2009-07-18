@@ -12,7 +12,7 @@
 hist_gp::hist_gp(selector*s,mutator*m,crossover*c,bin_dna_generator*g,const int max_hist_size):std_ga(s,m,c,g),
 											       m_max_hist_size(max_hist_size)
 {
-  dynamic_cast<GpGeneratorHist*>(m_g)->set_history(&m_history);
+  ((GpGeneratorHist*)m_g)->set_history(&m_history);
 }
 
 double hist_gp::oneStep()

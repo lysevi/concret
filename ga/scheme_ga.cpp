@@ -82,7 +82,7 @@ void scheme_ga::init()
     return std_ga::init();
 
   scheme_db sdb=select_schemes();
-  scheme_dna_generator* scg=dynamic_cast<scheme_dna_generator*>(m_g);
+  scheme_dna_generator* scg=(scheme_dna_generator*)m_g;
   scg->schemes=sdb;
 
   if(m_use_mutator){
