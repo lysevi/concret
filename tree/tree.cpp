@@ -124,7 +124,7 @@ namespace Tree
     int num=m_nodes[index];
     p_BaseNode node=(*m_fdb)[num];
 
-    NodeType nt=node->type();
+    NodeType nt=node->type;
 
     switch(nt)
       {
@@ -333,7 +333,7 @@ namespace Tree
     int num=m_nodes.find(pos)->second;
     p_BaseNode node=(*m_fdb)[num];
 
-    NodeType nt=node->type();
+    NodeType nt=node->type;
 
     switch(nt)
       {

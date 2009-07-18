@@ -24,9 +24,9 @@ namespace Tree
   class BaseNode
   {
   public:
-    BaseNode(const std::string _name);
-    virtual NodeType    type()const=0;
+    BaseNode(const std::string _name,const NodeType _type);
     virtual TermType    eval()const;
+    NodeType    type;
     std::string name;
   };//BaseNode
 
@@ -36,7 +36,6 @@ namespace Tree
   {
   public:
     FunctionNode(const std::string&name,int argc_count,const FuncContainer& fc);
-    NodeType    type()const {return FUNCTION_NODE;};
     virtual TermType    eval(const Args&args)const;
     int         argcount()const {return m_argc_count;};
   protected:
@@ -50,7 +49,6 @@ namespace Tree
   {
   public:
     ConstNode(TermType value);
-    NodeType    type()const {return CONST_NODE;};
     std::string name()const;
     TermType    eval()const;
   protected:
@@ -61,14 +59,12 @@ namespace Tree
   {
   public:
     VarNode(std::string name);
-    NodeType    type()const {return VAR_NODE;};
   };
 
   class VarFuncNode: public FunctionNode
   {
   public:
     VarFuncNode(std::string name,std::string var_name,const int argc_count,const FuncContainer& fc);
-    NodeType    type()const {return VARFUNC_NODE;};
     std::string var_name();
   protected:
     std::string m_var_name;

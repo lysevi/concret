@@ -31,7 +31,7 @@ namespace Tree
     else{
       int fnum=get_rnd_function_number();
       BaseNode*bn=(*m_fdb)[fnum].get();
-      NodeType nt=bn->type();
+      NodeType nt=bn->type;
       switch(nt){
       case(FUNCTION_NODE):{
 	FunctionNode*node=dynamic_cast<FunctionNode*>(bn);
