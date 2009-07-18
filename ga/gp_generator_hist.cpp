@@ -42,7 +42,7 @@ Tree::Tree GpGeneratorHist::generate_tree()
   int root_func=m_functions[m_rnd.uniform(0,m_functions.size()-1)];
   int root_num=result.add_node(root_func);
   result.set_root(root_num);
-  Tree::FunctionNode*node=dynamic_cast<Tree::FunctionNode*>((*m_fdb)[root_func].get());
+  Tree::FunctionNode*node=(Tree::FunctionNode*)((*m_fdb)[root_func].get());
   for(int i=0;i<node->argcount();++i)
     generate_sub_tree(result,root_num,m_max_depth);
   return result;
@@ -94,7 +94,7 @@ Tree::Tree GpGeneratorHist::generate_tree_h()
   int root_func=m_functions[m_rnd.uniform(0,m_functions.size()-1)];
   int root_num=result.add_node(root_func);
   result.set_root(root_num);
-  Tree::FunctionNode*node=dynamic_cast<Tree::FunctionNode*>((*m_fdb)[root_func].get());
+  Tree::FunctionNode*node=(Tree::FunctionNode*)((*m_fdb)[root_func].get());
   for(int i=0;i<node->argcount();++i)
     generate_sub_tree_h(result,root_num,m_max_depth,i+1);
   return result;

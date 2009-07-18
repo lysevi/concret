@@ -34,7 +34,7 @@ namespace Tree
       NodeType nt=bn->type;
       switch(nt){
       case(FUNCTION_NODE):{
-	FunctionNode*node=dynamic_cast<FunctionNode*>(bn);
+	FunctionNode*node=(FunctionNode*)(bn);
 	int sub_root=tree.add_node(fnum);
 	tree.connect(root,sub_root);
 	for(int i=0;i<node->argcount();++i)
@@ -60,7 +60,7 @@ namespace Tree
     int root_func=m_functions[m_rnd.uniform(0,m_functions.size()-1)];
     int root_num=result.add_node(root_func);
     result.set_root(root_num);
-    FunctionNode*node=dynamic_cast<FunctionNode*>((*m_fdb)[root_func].get());
+    FunctionNode*node=(FunctionNode*)((*m_fdb)[root_func].get());
     int depth;
     if(m_fly_mode)
       depth=m_rnd.uniform(1,m_max_depth);

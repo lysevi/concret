@@ -25,7 +25,7 @@ namespace Tree
   {
   public:
     BaseNode(const std::string _name,const NodeType _type);
-    virtual TermType    eval()const;
+    TermType    eval()const;
     NodeType    type;
     std::string name;
   };//BaseNode
@@ -36,7 +36,7 @@ namespace Tree
   {
   public:
     FunctionNode(const std::string&name,int argc_count,const FuncContainer& fc);
-    virtual TermType    eval(const Args&args)const;
+    TermType    eval(const Args&args)const;
     int         argcount()const {return m_argc_count;};
   protected:
     void check_arg_count(const Args&args)const throw(std::logic_error);

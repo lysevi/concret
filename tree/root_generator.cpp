@@ -27,8 +27,8 @@ namespace Tree
     int root_func=m_functions[m_root_function_number];
     int root_num=result.add_node(root_func);
     result.set_root(root_num);
-    FunctionNode*node=dynamic_cast<FunctionNode*>((*m_fdb)[root_func].get());
-    FunctionNode*second_layer=dynamic_cast<FunctionNode*>((*m_fdb)[m_second_layer_func_number].get());
+    FunctionNode*node=(FunctionNode*)((*m_fdb)[root_func].get());
+    FunctionNode*second_layer=(FunctionNode*)((*m_fdb)[m_second_layer_func_number].get());
     
     for(int i=0;i<node->argcount();++i){
       // Устанавливаем аргументы корня

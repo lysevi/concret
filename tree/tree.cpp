@@ -128,7 +128,7 @@ namespace Tree
 
     switch(nt)
       {
-      case(CONST_NODE):{return node->eval();};
+      case(CONST_NODE):{return ((ConstNode*)node.get())->eval();};
 
       case(VAR_NODE):{
 	VarMap::const_iterator pos=var_values.find(node->name);
@@ -147,12 +147,12 @@ namespace Tree
 	  int term_number=this->m_nodes[c];
 	  args[i]=this->eval_node(c,var_values);
 	}
-	FunctionNode*fn=dynamic_cast<FunctionNode*>(node.get());
+	FunctionNode*fn=(FunctionNode*)(node.get());
 	return fn->eval(args);
       };
 	
       case(VARFUNC_NODE):{
-	VarFuncNode*vfn=dynamic_cast<VarFuncNode*>(node.get());
+	VarFuncNode*vfn=(VarFuncNode*)(node.get());
 	VarMap::const_iterator pos=var_values.find(vfn->var_name());
 	if(pos==var_values.end()){
 	  LOG(var_values);
@@ -352,7 +352,7 @@ namespace Tree
 	return result+')';
       };
       case(VARFUNC_NODE):{
-	VarFuncNode*vfn=dynamic_cast<VarFuncNode*>(node.get());
+	VarFuncNode*vfn=(VarFuncNode*)(node.get());
 	std::string var_name=vfn->var_name();
 	return "["+vfn->name+' '+var_name+']';
       };
