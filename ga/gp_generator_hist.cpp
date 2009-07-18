@@ -26,7 +26,7 @@ void GpGeneratorHist::generate_sub_tree(Tree::Tree&tree,int root,int depth)
   }
   else{
     int fnum=m_functions[m_rnd.uniform(0,m_functions.size()-1)];
-    Tree::FunctionNode*node=dynamic_cast<Tree::FunctionNode*>((*m_fdb)[fnum].get());
+    Tree::FunctionNode*node=(Tree::FunctionNode*)((*m_fdb)[fnum].get());
     int sub_root=tree.add_node(fnum);
     tree.connect(root,sub_root);
     for(int i=0;i<node->argcount();++i)
