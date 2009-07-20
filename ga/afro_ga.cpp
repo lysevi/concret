@@ -7,6 +7,7 @@
 #include <ga/bin_dna_generator.hpp>
 #include <ga/selector_ch.hpp>
 #include <utils/utils.hpp>
+#include <utils/io.hpp>
 
 #include "afro_ga.hpp"
 
@@ -32,7 +33,7 @@ void afro_ga::addIndivid(const p_dna&individ)
 	index=i;
       }
     (*other_population())[index]=tmpD;
-    m_chanches[(m_cur_chanches+1)%2][index]=0;
+    m_chanches[(m_cur_chanches+1)%2][index]=1;
   }
   else{
     (*other_population())[m_p_position]=tmpD;
@@ -44,12 +45,6 @@ void afro_ga::addIndivid(const p_dna&individ)
 
 double afro_ga::oneStep()
 {
-  // расчитываем среднее значение фитнесса в популяции
-  double sq_fitness=0;
-  for(int i=0;i<cur_population()->size();++i)
-    sq_fitness+=byIndex(*cur_population(),i)->ftn();
-  sq_fitness/=cur_population()->size();
-  
   family_vector fv=select(*cur_population(),m_chanches[m_cur_chanches],static_cast<int>(cur_population()->size()*m_param.sp));
 
   BOOST_FOREACH(family fm,fv){
@@ -61,7 +56,7 @@ double afro_ga::oneStep()
     BOOST_FOREACH(p_dna d,*dv.get()){
       p_dna tmpD(d);
       double f=(*m_f)(tmpD);
-      if (f<sq_fitness){
+      if (f<(father->ftn()+mather->ftn())/2){
 	m_chanches[m_cur_chanches][fm.first]++;
 	m_chanches[m_cur_chanches][fm.second]++;
       }
@@ -103,7 +98,7 @@ family_vector afro_ga::select(const population&p,const ivector&chanches,int coun
 
 void afro_ga::init()
 {
-  m_chanches[0].resize(m_param.psize);
-  m_chanches[1].resize(m_param.psize);
+  m_chanches[0].assign(m_param.psize,1);
+  m_chanches[1].assign(m_param.psize,1);
   std_ga::init();
 }
