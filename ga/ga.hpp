@@ -5,9 +5,11 @@
 #include <ga/selector.hpp>
 #include <ga/bin_fitness.hpp>
 #include <ga/std_ga.hpp>
+#include <ga/afro_ga.hpp>
 #include <ga/bin_crossover.hpp>
 #include <ga/bin_mutator.hpp>
 #include <ga/selector_rnd.hpp>
+#include <ga/selector_ch.hpp>
 #include <ga/niche_selector.hpp>
 #include <ga/niche_ga.hpp>
 #include <ga/tester.hpp>
