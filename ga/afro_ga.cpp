@@ -11,7 +11,7 @@
 #include "afro_ga.hpp"
 
 afro_ga::afro_ga(selector*s,mutator*m,crossover*c,bin_dna_generator*g):std_ga(s,m,c,g),
-								       m_cur_chanches(0)
+								       m_cur_chanches(-1)
 {}
 
 void afro_ga::addIndivid(const p_dna&individ)
@@ -22,10 +22,23 @@ void afro_ga::addIndivid(const p_dna&individ)
   p_dna tmpD=individ;
   double f=(*m_f)(tmpD);
   tmpD->ftn(f);
-  // @todo: Должен выбирать место где m_chanches[m_cur_chanches][m_p_position]==0
-  (*other_population())[m_p_position]=tmpD;
-  m_chanches[m_cur_chanches][m_p_position]=0;
-  ++m_p_position;
+  // ищем нужную позицию
+  if(m_cur_chanches!=-1){ // Был ли сделан хоть один шаг эволюции
+    int index=0;
+    int min_value=m_chanches[(m_cur_chanches+1)%2][0];
+    for(int i=0;i<m_param.psize-1;++i)
+      if (m_chanches[(m_cur_chanches+1)%2][i]<min_value){
+	min_value=m_chanches[m_cur_chanches][i];
+	index=i;
+      }
+    (*other_population())[index]=tmpD;
+    m_chanches[(m_cur_chanches+1)%2][index]=0;
+  }
+  else{
+    (*other_population())[m_p_position]=tmpD;
+    m_chanches[m_cur_chanches][m_p_position]=0;
+    m_p_position++;
+  }
   massert(tmpD->size()==individ->size());
 }
 
@@ -52,6 +65,10 @@ double afro_ga::oneStep()
 	m_chanches[m_cur_chanches][fm.first]++;
 	m_chanches[m_cur_chanches][fm.second]++;
       }
+      else{
+	m_chanches[m_cur_chanches][fm.first]=(m_chanches[m_cur_chanches][fm.first]-1)<0?0:(m_chanches[m_cur_chanches][fm.first]-1);
+	m_chanches[m_cur_chanches][fm.second]=(m_chanches[m_cur_chanches][fm.second]-1)<0?0:(m_chanches[m_cur_chanches][fm.second]-1);;
+      }
       addIndivid((*m_m)(tmpD,m_param.get_mpecent_for(0)));
     }
   }
@@ -60,8 +77,7 @@ double afro_ga::oneStep()
   if((*other_population())[0]->ftn()>bestDna->ftn())
     (*other_population())[0]=bestDna;
 
-  init();
-
+  //init();
   m_generation_number++;
   if(m_dump_enable){
     population::const_iterator pos=cur_population()->begin();
@@ -76,6 +92,7 @@ double afro_ga::oneStep()
 
 solution afro_ga::getSolution(int max_steps,double min_ftn,bool verbose)
 {
+  m_cur_chanches=0;
   return std_ga::getSolution(max_steps,min_ftn,verbose);
 }
 
