@@ -58,7 +58,7 @@ double afro_ga::oneStep()
       double f=(*m_f)(tmpD);
       if (f<(father->ftn()+mather->ftn())/2){
 	m_chanches[m_cur_chanches][fm.first]++;
-	m_chanches[m_cur_chanches][fm.second]++;
+	//m_chanches[m_cur_chanches][fm.second]++;
       }
       else{
 	m_chanches[m_cur_chanches][fm.first]=(m_chanches[m_cur_chanches][fm.first]-1)<0?0:(m_chanches[m_cur_chanches][fm.first]-1);

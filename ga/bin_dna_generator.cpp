@@ -26,12 +26,12 @@ void bin_dna_generator::setSize(int s)
   m_size=s;
 }
 
-void bin_dna_generator::setFrom(int f)
+void bin_dna_generator::setFrom(float f)
 {
   m_from=f;
 }
 
-void bin_dna_generator::setTo(int t)
+void bin_dna_generator::setTo(float t)
 {
   m_to=t;
 }

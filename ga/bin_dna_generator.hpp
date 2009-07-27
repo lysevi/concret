@@ -11,8 +11,8 @@ public:
   bin_dna_generator(float from,float to,int size=1);
   int size()const;
   void setSize(int s);
-  void setFrom(int f);
-  void setTo(int t);
+  void setFrom(float f);
+  void setTo(float t);
   virtual p_dna generate();
 protected:
   float m_from;
