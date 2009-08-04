@@ -36,7 +36,7 @@ namespace Tree
   {
   public:
     FunctionNode(const std::string&name,int argc_count,const FuncContainer& fc);
-    TermType    eval(const Args&args)const;
+    virtual TermType    eval(const Args&args)const;
     int         argcount()const {return m_argc_count;};
   protected:
     void check_arg_count(const Args&args)const throw(std::logic_error);
