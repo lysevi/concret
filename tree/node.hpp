@@ -25,7 +25,7 @@ namespace Tree
   {
   public:
     BaseNode(const std::string _name,const NodeType _type);
-    TermType    eval()const;
+    virtual TermType    eval()const;
     NodeType    type;
     std::string name;
   };//BaseNode
