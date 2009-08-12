@@ -21,7 +21,7 @@ void afro_ga::addIndivid(const p_dna&individ)
     return;
   }
   p_dna tmpD=individ;
-  double f=(*m_f)(tmpD);
+  double f=calc_ftn(tmpD);
   tmpD->ftn(f);
   // ищем нужную позицию
   if(m_cur_chanches!=-1){ // Был ли сделан хоть один шаг эволюции
@@ -55,7 +55,7 @@ double afro_ga::oneStep()
 
     BOOST_FOREACH(p_dna d,*dv.get()){
       p_dna tmpD(d);
-      double f=(*m_f)(tmpD);
+      double f=calc_ftn(tmpD);
       if (f<(father->ftn()+mather->ftn())/2){
 	m_chanches[m_cur_chanches][fm.first]++;
 	//m_chanches[m_cur_chanches][fm.second]++;
