@@ -65,3 +65,5 @@ ga_executable(fgp2 fgp2.cpp ga tree fuzzy)
 ga_executable(gp_fly gp_fly.cpp ga tree)
 
 ga_executable(afro_gp afro_gp.cpp ga tree)
+
+ga_executable(gp_hist gp_hist.cpp ga tree)
