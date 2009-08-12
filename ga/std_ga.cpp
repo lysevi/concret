@@ -71,7 +71,23 @@ void std_ga::clean()
 {
   m_p_first->clear();
   m_p_second->clear();
+  m_cache.clear();
   m_p_position=0;
+}
+
+double std_ga::calc_ftn(const p_dna&individ)
+{
+  if((m_generation_number%20)==0)
+    m_cache.clear();
+  FtnCache::const_iterator pos=m_cache.find(individ->genom());
+  if(pos!=m_cache.end()){
+    return pos->second;
+  }
+  else{
+    double f=(*m_f)(individ);
+    m_cache[individ->genom()]=f;
+    return f;
+  }
 }
 
 void std_ga::addIndivid(const p_dna&individ)
@@ -80,8 +96,7 @@ void std_ga::addIndivid(const p_dna&individ)
     return;
   }
   p_dna tmpD=individ;
-  double f=(*m_f)(tmpD);
-  tmpD->ftn(f);
+  tmpD->ftn(calc_ftn(individ));
   (*other_population())[m_p_position]=tmpD;
   ++m_p_position;
   massert(tmpD->size()==individ->size());
@@ -140,11 +155,13 @@ solution std_ga::getSolution(int max_steps,double min_ftn,bool verbose)
       double max_dist=m_f->max_distance(best_dna);
       if(max_dist!=0.0){
 	PRINT("step="<<i<<" p="<<cur_population()->size()<<" best="<<best_ftn<<", "<<max_dist
-	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size());
+	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size()
+	      <<" cache="<<m_cache.size());
       }
       else{
 	PRINT("step="<<i<<" p="<<cur_population()->size()<<" best="<<best_ftn
-	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size());
+	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size()
+	      <<" cache="<<m_cache.size());
       }
     }
 

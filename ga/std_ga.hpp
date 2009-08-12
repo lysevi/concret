@@ -4,6 +4,7 @@
 #include <ga/params.hpp>
 #include <ga/selector.hpp>
 #include <string>
+#include <map>
 using namespace std;
 
 typedef pair<int,p_dna> solution;
@@ -23,6 +24,7 @@ enum populationNumber{
 
 class std_ga
 {
+  typedef std::map<ivector,double> FtnCache;
 public:
   std_ga(selector*s,mutator*m,crossover*c,bin_dna_generator*g);
   void set_params(const params&param);
@@ -41,10 +43,12 @@ public:
   void enable_dump();
   void disable_dump();
 protected:
+  double      calc_ftn(const p_dna&individ);
   population* cur_population();
   population* other_population();
   void        switch_population();
 public:
+  FtnCache         m_cache;
   population      *m_p_first;
   population      *m_p_second;
   populationNumber m_p_number;
