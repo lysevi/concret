@@ -141,7 +141,7 @@ double std_ga::oneStep()
 }
 
 
-solution std_ga::getSolution(int max_steps,double min_ftn,bool verbose)
+solution std_ga::getSolution(int max_steps,double min_ftn,bool verbose,bool only_best)
 {
   boost::timer t0;      //Время выполнения в милисекундах.
   for(int i=0;i<max_steps;i++){
@@ -154,14 +154,20 @@ solution std_ga::getSolution(int max_steps,double min_ftn,bool verbose)
       p_dna best_dna=best(*cur_population());
       double max_dist=m_f->max_distance(best_dna);
       if(max_dist!=0.0){
-	PRINT("step="<<i<<" p="<<cur_population()->size()<<" best="<<best_ftn<<", "<<max_dist
-	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size()
-	      <<" cache="<<m_cache.size());
+	if(!only_best){
+	  PRINT("step="<<i<<" p="<<cur_population()->size()<<" best="<<best_ftn<<", "<<max_dist
+		<<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size()
+		<<" cache="<<m_cache.size());
+	}else
+	  LOG(""<<i<<";"<<best_ftn)
       }
       else{
-	PRINT("step="<<i<<" p="<<cur_population()->size()<<" best="<<best_ftn
-	      <<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size()
-	      <<" cache="<<m_cache.size());
+	if(!only_best){
+	  PRINT("step="<<i<<" p="<<cur_population()->size()<<" best="<<best_ftn
+		<<" worst="<<worst(*cur_population())->ftn()<<" time= "<<time<<" среднее="<<std::accumulate(m_times.begin(),m_times.end(),0.0)/m_times.size()
+		<<" cache="<<m_cache.size());
+	}else
+	  LOG(""<<i<<";"<<best_ftn)
       }
     }
 

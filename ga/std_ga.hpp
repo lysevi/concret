@@ -35,7 +35,7 @@ public:
   virtual void   init();
   virtual void   clean();
   virtual double oneStep();
-  virtual solution  getSolution(int max_steps,double min_ftn,bool verbose=false);
+  virtual solution  getSolution(int max_steps,double min_ftn,bool verbose=false,bool only_best=false);
   virtual void   setFitness(fitness*ftn);
 
   virtual family_vector select(const population&p,int count);
