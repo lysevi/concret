@@ -34,14 +34,15 @@ int    max_steps_ga=10;
 int    max_depth=5;
 double percent_to_learn=0.75;
 double selection_percent=0.4;
-
+bool   print_only_best=false;
 int main(int argc,char*argv[])
 {
-  if(argc!=2){
+  if(argc<2){
     LOG("usage: "<<argv[0]<<" data.csv");
     return -1;
   }
-  
+  if(argc==3)
+    print_only_best=true;  
   Concrete::CData cdata(argv[1]);
   cdata.init();
   Concrete::CData bt_cdata=cdata.bootstrap(resize_data,0.05);
@@ -128,7 +129,7 @@ int main(int argc,char*argv[])
   gp_sg->set_params(make_params(mtn_raiting,0.4,psize));
   gp_sg->setFitness(gp_ftn);
   gp_sg->init();
-  solution gp_sln=sg->getSolution(max_steps,target_value,true);
+  solution gp_sln=sg->getSolution(max_steps,target_value,true,print_only_best);
   LOG("results: "<<gp_sln.first);
   gp_ftn->check_solution(gp_sln.second,&cdata);
 }

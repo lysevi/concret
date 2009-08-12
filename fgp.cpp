@@ -22,7 +22,7 @@ protected:
 };
 
 const double target_value=8.0; // ГОСТ 10180-09
-const double mtn_raiting=0.9;
+const double mtn_raiting=1.0;
 const int    resize_data=1; // для BOOTSTRAP
 
 int    psize=200;
@@ -30,14 +30,16 @@ int    max_steps=500;
 int    max_depth=5;
 double percent_to_learn=0.75;
 double selection_percent=0.4;
+bool   print_only_best=false;
 
 int main(int argc,char*argv[])
 {
-  if(argc!=2){
+  if(argc<2){
     LOG("usage: "<<argv[0]<<" data.csv");
     return -1;
   }
-  
+  if(argc==3)
+    print_only_best=true;
   Concrete::CData cdata(argv[1]);
   cdata.init();
   Concrete::CData bt_cdata=cdata.bootstrap(resize_data,0.05);
@@ -98,7 +100,7 @@ int main(int argc,char*argv[])
   sg->set_params(make_params(mtn_raiting,0.4,psize));
   sg->setFitness(ftn);
   sg->init();
-  solution sln=sg->getSolution(max_steps,target_value,true);
-  LOG("results: "<<sln.first);
-  ftn->check_solution(sln.second,&cdata);
+  solution sln=sg->getSolution(max_steps,target_value,true,print_only_best);
+//   LOG("results: "<<sln.first);
+//   ftn->check_solution(sln.second,&cdata);
 }

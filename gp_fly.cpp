@@ -16,14 +16,15 @@ int    max_steps=500;
 int    max_depth=5;
 double percent_to_learn=0.5;
 double selection_percent=0.4;
-
+bool   print_only_best=false;
 int main(int argc,char*argv[])
 {
-  if(argc!=2){
+  if(argc<2){
     LOG("usage: "<<argv[0]<<" data.csv");
     return -1;
   }
-  
+  if(argc==3)
+    print_only_best=true;  
   Concrete::CData cdata(argv[1]);
   cdata.init();
 
@@ -61,7 +62,7 @@ int main(int argc,char*argv[])
   sg->set_params(make_params(mtn_raiting,0.4,psize));
   sg->setFitness(ftn);
   sg->init();
-  solution sln=sg->getSolution(max_steps,target_value,true);
+  solution sln=sg->getSolution(max_steps,target_value,true,print_only_best);
   LOG("results: "<<sln.first);
   ftn->check_solution(sln.second,&cdata);
 }
