@@ -28,10 +28,10 @@ void GpFitness::clear()
   this->init();
 }
 
-Tree::VarMap GpFitness::make_varmap(Concrete::CData*cdata)
+Tree::VarMap GpFitness::make_varmap(Concrete::CData*cdata,int string)
 {
   Tree::VarMap vm;
-  Concrete::p_component x=(*m_cdata)[0];
+  Concrete::p_component x=(*m_cdata)[string];
 
   for(int k=0;k<x->size();++k)
     vm["x-"+boost::lexical_cast<std::string>(k)]=x->at(k);
@@ -62,8 +62,7 @@ void GpFitness::check_solution(const p_dna&d,Concrete::CData*cdata)
   
   LOG(t.to_str());
   for(int i=0;i<m_cdata->size();++i){
-    Tree::VarMap vm(make_varmap(m_cdata));
-
+    Tree::VarMap vm(make_varmap(m_cdata,i));
 
     double v=t.eval(vm);
     double y_etalon=m_cdata->y_for_xp(i);
@@ -86,7 +85,7 @@ double GpFitness::operator()(const p_dna&d)
   t.set_fdb(m_fdb);
   t.flat_to_tree(d->genom());
   for(int i=0;i<m_numbers.size();++i){
-    Tree::VarMap vm(make_varmap(m_cdata));
+    Tree::VarMap vm(make_varmap(m_cdata,i));
 
     double v=t.eval(vm);
     double etalon=m_cdata->y_for_xp(i);
@@ -104,7 +103,7 @@ double GpFitness::max_distance(const p_dna&d)
   t.set_fdb(m_fdb);
   t.flat_to_tree(d->genom());
   for(int i=0;i<m_numbers.size();++i){
-    Tree::VarMap vm(make_varmap(m_cdata));
+    Tree::VarMap vm(make_varmap(m_cdata,i));
 
     double v=t.eval(vm);
     double etalon=m_cdata->y_for_xp(i);

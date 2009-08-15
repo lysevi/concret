@@ -18,7 +18,7 @@ public:
   void   check_solution(const p_dna&d,Concrete::CData*cdata=NULL); // выводит максимальное и среднее отклонение от выборки
   double   max_distance(const p_dna&d); // максимальное отклонение от выборки
   void  set_numbers(const ivector&numbers);
-  Tree::VarMap make_varmap(Concrete::CData*cdata);
+  Tree::VarMap make_varmap(Concrete::CData*cdata,int string);
 protected:
   Concrete::CData *m_cdata;
   Tree::FunctionDB*m_fdb;
