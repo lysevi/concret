@@ -26,7 +26,7 @@ const double mtn_raiting=1.0;
 const int    resize_data=1; // для BOOTSTRAP
 
 int    psize=200;
-int    max_steps=500;
+int    max_steps=100;
 int    max_depth=5;
 double percent_to_learn=0.75;
 double selection_percent=0.4;
@@ -101,6 +101,6 @@ int main(int argc,char*argv[])
   sg->setFitness(ftn);
   sg->init();
   solution sln=sg->getSolution(max_steps,target_value,true,print_only_best);
-//   LOG("results: "<<sln.first);
-//   ftn->check_solution(sln.second,&cdata);
+  LOG("results: "<<sln.first);
+  ftn->check_solution(sln.second,&cdata);
 }

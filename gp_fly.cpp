@@ -11,8 +11,8 @@ const double target_value=8.0; // ГОСТ 10180-09
 const double mtn_raiting=0.9;
 const int    resize_data=1; // для BOOTSTRAP
 
-int    psize=50;
-int    max_steps=500;
+int    psize=100;
+int    max_steps=100;
 int    max_depth=5;
 double percent_to_learn=0.5;
 double selection_percent=0.4;
@@ -34,8 +34,8 @@ int main(int argc,char*argv[])
 
   fdb->add_variables(bt_cdata.x_count());
 
-  for(double i=-10.0;i<10.0;i+=0.5)
-    fdb->add_constant(i);
+//   for(double i=-10.0;i<10.0;i+=0.5)
+//     fdb->add_constant(i);
 
   Tree::Generator*gnrt=new Tree::Generator(fdb,max_depth,true);
   Tree::Crossover*crossover=new Tree::Crossover;
