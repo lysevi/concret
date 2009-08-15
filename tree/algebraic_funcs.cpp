@@ -77,5 +77,13 @@ namespace Tree
 	result+=args[i];
       return result;
     }
+    TermType neg_f(Tree::Args args)
+    {
+      return -args[0];
+    }
+    Tree::TermType abs_f(Tree::Args args)
+    {
+      return fabs(args[0]);
+    }
   }; //namespace AlgrebraicFunctions
 }; // namespace Tree

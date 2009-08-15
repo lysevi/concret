@@ -28,6 +28,8 @@ namespace Tree
     fdb->add_function(new Tree::FunctionNode("sqr",1,AlgrebraicFunctions::sqr_f));
     fdb->add_function(new Tree::FunctionNode("exp",3,AlgrebraicFunctions::exp_f));
     fdb->add_function(new Tree::FunctionNode("summ",10,AlgrebraicFunctions::summ_f));
+    fdb->add_function(new Tree::FunctionNode("neg",1,AlgrebraicFunctions::neg_f));
+    fdb->add_function(new Tree::FunctionNode("abs",1,AlgrebraicFunctions::abs_f));
     return fdb;
   }
 

@@ -29,6 +29,8 @@ namespace Tree
     Tree::TermType exp_f(Tree::Args args);
 
     Tree::TermType summ_f(Tree::Args args);
+    Tree::TermType neg_f(Tree::Args args);
+    Tree::TermType abs_f(Tree::Args args);
   }; // namespace AlgrebraicFunctions
 }; // namespace Tree
 #endif
