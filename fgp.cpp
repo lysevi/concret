@@ -28,7 +28,7 @@ const int    resize_data=1; // для BOOTSTRAP
 int    psize=200;
 int    max_steps=100;
 int    max_depth=5;
-double percent_to_learn=0.75;
+double percent_to_learn=0.5;
 double selection_percent=0.4;
 bool   print_only_best=false;
 
