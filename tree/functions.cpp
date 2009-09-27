@@ -39,8 +39,8 @@ namespace Tree
     Tree::FunctionDB* fdb=new Tree::FunctionDB;
     result->fdb=fdb;
     result->root_number=fdb->add_function(new Tree::FuzzyFunctions::FuzzySugenoRoot(y));
-//     for(int i=x_count;i>=1;--i)
-      result->second_layer=fdb->add_function(new Tree::FuzzyFunctions::FuzzySugenoIf(1));
+    for(int i=x_count;i>=1;--i)
+      result->second_layer=fdb->add_function(new Tree::FuzzyFunctions::FuzzySugenoIf(i));
     fdb->add_function(new Tree::FunctionNode("or",2,FuzzyFunctions::fuzzy_or));
     fdb->add_function(new Tree::FunctionNode("and",2,FuzzyFunctions::fuzzy_and));
     fdb->add_function(new Tree::FunctionNode("not",1,FuzzyFunctions::fuzzy_not));
