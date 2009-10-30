@@ -3,6 +3,11 @@
 
 namespace fuzzy
 {
+  //@todo стоит попробовать функцию 
+  // thetta = 1
+  // mu = 0
+  // hight = 1
+  // hight*exp(-(x-mu)**2/2*thetta**2)
   Function*function3(const coord&_min,const coord&_av,const coord&_max)
   {
     coord_vector coords;
