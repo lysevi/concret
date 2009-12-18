@@ -24,7 +24,7 @@ namespace Tree
     for(NodeMap::const_iterator pos=other.m_nodes.begin();pos!=other.m_nodes.end();++pos)
       nmap[pos->first]=add_node(pos->second);
 
-    for(int i=0;i<m_edges.size();++i)
+    for(int i=0;i<other.m_edges.size();++i)
       connect(nmap[other.m_edges[i].first],nmap[other.m_edges[i].second]);
     set_root(nmap[other.m_root]);
   }
