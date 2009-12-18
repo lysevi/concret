@@ -8,7 +8,7 @@
 #include <numeric>
 #include <cmath>
 #include <utils/vector_op.hpp>
-
+#include <stdio.h>
 /*
   Аппроксимация с помощью вывода Сугэно 0-порядка.
   Обучается на данных из bootstrap, а тестируется на реальных данных.
