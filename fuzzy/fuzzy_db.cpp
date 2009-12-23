@@ -42,7 +42,7 @@ namespace fuzzy
     return result;
   }
 
-  MyuFunctions make_myu_functions(const MinMax&minmax)
+  MyuFunctions make_myu_functions(const Concrete::CData&cdata,const ivector&numbers,const MinMax&minmax)
   {
     const int x_length=minmax.max_x.size();
 
@@ -52,14 +52,12 @@ namespace fuzzy
     
     MyuFunctions result={fvector(0),y_function};
     
-    for(int i=0;i<x_length;++i){
-      Function*max_f=function3(coord(minmax.min_x[i],0),coord((minmax.max_x[i]+minmax.min_x[i])/2.0,1.0),
-			       coord(minmax.max_x[i],0));
-    
-      Function*min_f=function3(coord(minmax.min_x[i],1),coord((minmax.max_x[i]+minmax.min_x[i])/2.0,0),
-			       coord(minmax.max_x[i],1));
-      result.x_funcs.push_back(max_f);
-      result.x_funcs.push_back(min_f);
+    for(int i=0;i<numbers.size();++i){
+      for(int j=0;j<x_length;++j){
+	Function*max_f=function3(coord(minmax.min_x[i],0),coord(cdata[numbers[i]]->at(j),1.0),
+				 coord(minmax.max_x[i],0));
+	result.x_funcs.push_back(max_f);
+      }
     }
     return result;
   }

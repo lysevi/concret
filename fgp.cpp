@@ -50,7 +50,7 @@ int main(int argc,char*argv[])
   fuzzy::MinMax minmax=fuzzy::find_min_max(bt_cdata,numbers);
 
   // Построение функций принадлжености
-  fuzzy::MyuFunctions mf=fuzzy::make_myu_functions(minmax);
+  fuzzy::MyuFunctions mf=fuzzy::make_myu_functions(bt_cdata,numbers,minmax);
 
   LOG("Количество функций для X: "<<mf.x_funcs.size());
 

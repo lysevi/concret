@@ -41,6 +41,8 @@ namespace Tree
       dvector up_mul=y_1*args;
       double up=std::accumulate(up_mul.begin(),up_mul.end(),0.0);
       double down=std::accumulate(args.begin(),args.end(),0.0);
+      if (down==0)
+	return 0.0;
       double out=up/down; //Выход, для текущего набора
       return out;
     }

@@ -36,7 +36,7 @@ namespace fuzzy
   MinMax find_min_max(const Concrete::CData&cdata,const ivector&numbers);
 
   // Построение функций принадлжености
-  MyuFunctions make_myu_functions(const MinMax&minmax);
+  MyuFunctions make_myu_functions(const Concrete::CData&cdata,const ivector&numbers,const MinMax&minmax);
 
   // Формирование базы нечетких правил...
   // См. алгоиритм в черной книге (способ 2).
