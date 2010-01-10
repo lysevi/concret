@@ -38,7 +38,6 @@ plt.subplot(111)
 plt.plot(x,etalon,"bo-",label=func_name)
 num=0
 for k,v in gp_results.items():
-    print x,v
     plt.plot(x,v,colors[num]+line_style[num],label=k)
     num+=1
 

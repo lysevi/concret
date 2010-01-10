@@ -37,8 +37,10 @@ plt.subplot(111)
 rects={}
 #etalon_rects=plt.bar(ind, etalon, width, color='b')
 num=0
+print len(etalon)
 for k,v in gp_results.items():
     ind=ind+width
+    print k,len(v)
     rects[k]=plt.bar(ind, abs(etalon-v), width,color=colors[num]) # более красивое
     #rects[k]=plt.bar(ind, v, width,color=colors[num])
     num+=1
