@@ -46,6 +46,7 @@ for k,v in gp_results.items():
     num+=1
 
 plt.ylabel(u'Выходное значение')
+plt.xlabel(u'Номер испытания')
 plt.xticks(ind+width, list(range(len(etalon))))
 
 a1=[]#etalon_rects[0]]
