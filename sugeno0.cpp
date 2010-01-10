@@ -85,7 +85,7 @@ int main(int argc,char*argv[])
     double etalon=cdata.y_for_xp(i);
     double out=0.0;
     if (down!=0.0)
-      up/down; //Выход, для текущего набора
+      out=up/down; //Выход, для текущего набора
     double delta=fabs(out-etalon)/etalon*100.0;
 
     errors.push_back(delta);
