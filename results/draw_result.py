@@ -35,20 +35,23 @@ width = 0.25        # the width of the bars
 
 plt.subplot(111)
 rects={}
-rects[func_name]=plt.bar(ind, etalon, width, color='b')
+#etalon_rects=plt.bar(ind, etalon, width, color='b')
 num=0
 for k,v in gp_results.items():
     ind=ind+width
-    rects[k]=plt.bar(ind, v, width,color=colors[num])
+    rects[k]=plt.bar(ind, abs(etalon-v), width,color=colors[num]) # более красивое
+    #rects[k]=plt.bar(ind, v, width,color=colors[num])
     num+=1
 
 plt.ylabel(u'Выходное значение')
 plt.xticks(ind+width, list(range(len(etalon))))
 
-a1=[]
-a2=[]
+a1=[]#etalon_rects[0]]
+a2=[]#func_name]
 for k,v in rects.items():
-    a1.append(v[0])
-    a2.append(k)
+    a1.append(v[0])# ((etalon-gp_results[k])/len(etalon)).sum()
+    # abs(gp_results[k]*100/etalon).sum()/N - АРЕ
+    a2.append(k+' $\delta=%f$'%(abs((etalon-gp_results[k])/len(etalon)).sum()))
+
 plt.legend(a1,a2)
 plt.show()
