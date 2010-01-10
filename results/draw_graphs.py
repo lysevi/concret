@@ -18,7 +18,7 @@ if len(sys.argv)==1:
     print "usage: ",sys.argv[0]," filename"
     sys.exit()
 
-colors="g r m y".split()
+colors="g r m b".split()
 line_style='-- -. : ,'.split()
 
 f=file(sys.argv[1])
