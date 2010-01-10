@@ -29,14 +29,14 @@ int main(int argc,char*argv[])
   Concrete::CData cdata(argv[1]);
   cdata.init();
 
-  Concrete::CData bt_cdata=cdata.bootstrap(resize_data,0.05);
+  Concrete::CData bt_cdata=cdata;//.bootstrap(resize_data,0.05);
 
   Tree::FunctionDB* fdb=Tree::std_functions_db();
 
   fdb->add_variables(bt_cdata.x_count());
 
-  for(double i=-10.0;i<10.0;i+=0.5)
-    fdb->add_constant(i);
+  //for(double i=-10.0;i<10.0;i+=0.5)
+  //  fdb->add_constant(i);
 
   Tree::Generator*gnrt=new Tree::Generator(fdb,max_depth);
   Tree::Crossover*crossover=new Tree::Crossover;
