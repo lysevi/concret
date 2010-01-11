@@ -45,7 +45,7 @@ for k,v in gp_results.items():
     #rects[k]=plt.bar(ind, v, width,color=colors[num])
     num+=1
 
-plt.ylabel(u'Выходное значение')
+plt.ylabel(u'Величина ошибки')
 plt.xlabel(u'Номер испытания')
 plt.xticks(ind+width, list(range(len(etalon))))
 
