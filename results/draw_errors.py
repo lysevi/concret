@@ -54,7 +54,7 @@ a2=[]#func_name]
 for k,v in rects.items():
     a1.append(v[0])# ((etalon-gp_results[k])/len(etalon)).sum()
     # abs(gp_results[k]*100/etalon).sum()/N - АРЕ
-    a2.append(k+' $\delta=%f$'%(abs((etalon-gp_results[k])/len(etalon)).sum()))
+    a2.append(k+' $\delta$=%f'%(abs((etalon-gp_results[k])/len(etalon)).sum()))
 
 plt.legend(a1,a2)
 plt.show()
