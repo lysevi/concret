@@ -18,7 +18,7 @@ if len(sys.argv)==1:
     print "usage: ",sys.argv[0]," filename"
     sys.exit()
 
-colors="g r c m y k w".split()
+colors="g r w c m y k".split()
 
 f=file(sys.argv[1])
 func_name=f.readline().strip()
