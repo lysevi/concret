@@ -12,11 +12,12 @@ mixture.svm.test <- function(xs.train, ys.train, xs.test=xs.train, ys.test=ys.tr
 } ## assert(0.15 > mixture.svm.test(matrix(1:6,nrow=2), 1:2))    
 
 ## 100*mean(apply(as.matrix(rep(0.5,30)), 1, t))
-t <- function(f) {
+run <- function(f) {
   i <- sample(nrow(x),round(f*nrow(x))); 
   nx=x[i,]
   ny=y[i]
   ##
-  ap.y=mixture.svm.test(nx,ny,x,y,gamma=1e-4)
-  data.frame(delta=abs(y-ap.y),mean=mean(abs(y-ap.y)/y))
+  ap.y=mixture.svm.test(nx,ny,x,y,gamma=1e-1)
+  # data.frame(delta=abs(y-ap.y),mean=mean(abs(y-ap.y)/y))
+  abs(y-ap.y)
 }
