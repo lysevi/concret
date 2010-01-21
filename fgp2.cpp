@@ -69,7 +69,7 @@ int main(int argc,char*argv[])
   LOG("Этап 2");
   fuzzy::MinMax minmax=fuzzy::find_min_max(bt_cdata,numbers);
 
-  fuzzy::MyuFunctions mf_old=fuzzy::make_myu_functions(minmax);
+  fuzzy::MyuFunctions mf_old=fuzzy::make_myu_functions(bt_cdata,numbers,minmax);
   fuzzy::MyuFunctions mf={fuzzy::fvector(0),mf_old.y_function};
 
   // Построение функций принадлжености  

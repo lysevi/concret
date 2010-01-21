@@ -45,7 +45,7 @@ int main(int argc,char*argv[])
   fuzzy::MinMax minmax=fuzzy::find_min_max(bt_cdata,numbers);
 
   // Построение функций принадлжености
-  fuzzy::MyuFunctions mf=fuzzy::make_myu_functions(minmax);
+  fuzzy::MyuFunctions mf=fuzzy::make_myu_functions(bt_cdata,numbers,minmax);
   
   LOG("Количество функций для X: "<<mf.x_funcs.size());
 
@@ -83,7 +83,9 @@ int main(int argc,char*argv[])
     double up=std::accumulate(up_mul.begin(),up_mul.end(),0.0);
     double down=std::accumulate(alphas.begin(),alphas.end(),0.0);
     double etalon=cdata.y_for_xp(i);
-    double out=up/down; //Выход, для текущего набора
+    double out=0.0;
+    if (down!=0.0)
+      out=up/down; //Выход, для текущего набора
     double delta=fabs(out-etalon)/etalon*100.0;
 
     errors.push_back(delta);
