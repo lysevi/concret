@@ -1,6 +1,6 @@
 haupt11
-std_ga;233
-clust;5046
+std_ga;533
+clust;504
 seq_g;164
 seq_m;334
 seq_a;52.3

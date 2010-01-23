@@ -1,6 +1,6 @@
 haupt2
-std_ga;5
-clust;1
-seq_g;12
+std_ga;9
+clust;5
+seq_g;4
 seq_m;6.9
 seq_a;7
