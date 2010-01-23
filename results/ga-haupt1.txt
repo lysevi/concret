@@ -1,0 +1,6 @@
+haupt1
+std_ga;8556
+clust;4817
+seq_g;6633
+seq_m;6948
+seq_a;8951
