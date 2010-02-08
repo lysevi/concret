@@ -31,7 +31,7 @@ for l in f.readlines():
 #################################################################
 N=len(etalon)
 ind = np.arange(N)  # the x locations for the groups
-width = 0.25        # the width of the bars
+width = 0.15        # the width of the bars
 
 plt.subplot(111)
 rects={}
@@ -39,8 +39,8 @@ rects={}
 num=0
 print len(etalon)
 for k,v in gp_results.items():
-    ind=ind+width
-    print k,len(v)
+    ind=ind+width+width/10.0
+    print k,len(v),ind
     rects[k]=plt.bar(ind, abs(etalon-v), width,color=colors[num]) # более красивое
     #rects[k]=plt.bar(ind, v, width,color=colors[num])
     num+=1
