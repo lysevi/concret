@@ -18,8 +18,8 @@ if len(sys.argv)==1:
     print "usage: ",sys.argv[0]," filename"
     sys.exit()
 
-colors="g r m b".split()
-line_style='-- -. : ,'.split()
+colors="g r c m y k".split()
+line_style='- -- -. : . ,'.split()
 
 f=file(sys.argv[1])
 func_name=f.readline().strip()
@@ -38,7 +38,9 @@ plt.subplot(111)
 plt.plot(x,etalon,"bo-",label=func_name)
 num=0
 for k,v in gp_results.items():
-    plt.plot(x,v,colors[num]+line_style[num],label=k)
+    c=colors[num]
+    ls=line_style[num]
+    plt.plot(x,v,c+ls,label=k)
     num+=1
 
 plt.ylabel(u'$f(x)$')
