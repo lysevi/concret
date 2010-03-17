@@ -39,7 +39,7 @@ rects={}
 num=0
 print len(etalon)
 for k,v in gp_results.items():
-    ind=ind+width+width/10.0
+    ind=ind+width+width/20.0
     print k,len(v),ind
     rects[k]=plt.bar(ind, abs(etalon-v), width,color=colors[num]) # более красивое
     #rects[k]=plt.bar(ind, v, width,color=colors[num])

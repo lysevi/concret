@@ -36,27 +36,27 @@ print "Values: ",values
 #################################################################
 N=1
 ind = np.arange(N)  # the x locations for the groups
-width = 0.25        # the width of the bars
+width = 0.01        # the width of the bars
 
 plt.subplot(111)
 rects={}
 num=0
 print len(values)
 for i in range(len(values)):
-    ind=ind+width
+    ind=ind+width+width/10.0
     print "v=",values[i]
     rects[i]=plt.bar(ind, values[i], width,color=colors[num]) # более красивое
     num+=1
 
 plt.ylabel(u'Количество поколений')
 plt.xlabel(u'Алгоритм')
-plt.xticks(ind+width, list(range(len(values))))
+#plt.xticks(ind-width, map(str,list(range(len(names)))))
 
 a1=[]
 a2=[]
 for k,v in rects.items():
     a1.append(v[0])
-    a2.append(names[k]+' D='+str(values[0][0]-values[k][0]))
+    a2.append(names[k]+' D='+str(values[k][0]))
 
 plt.legend(a1,a2)
 plt.show()
