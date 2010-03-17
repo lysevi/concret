@@ -50,7 +50,7 @@ for i in range(len(values)):
 
 plt.ylabel(u'Количество поколений')
 plt.xlabel(u'Алгоритм')
-#plt.xticks(ind-width, map(str,list(range(len(names)))))
+plt.xticks(ind-width, map(lambda x: ' ',list(range(len(names)))))
 
 a1=[]
 a2=[]
