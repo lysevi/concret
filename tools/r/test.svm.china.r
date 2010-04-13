@@ -25,3 +25,5 @@ run <- function(f) {
   # data.frame(delta=abs(y-ap.y),mean=mean(abs(y-ap.y)/y))
   abs(y-ap.y)
 }
+
+delta <- run(0.5) # 0.5 - размер обучающей выборки
