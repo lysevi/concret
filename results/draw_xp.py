@@ -37,7 +37,7 @@ num=0
 print len(etalon)
 for k,v in gp_results.items():
     print k,len(v)
-    plt.plot(v,t[num],color=colors[num],label=(k+' E=%f'%(gp_results[k].sum()/len(etalon)))) # более красивое
+    plt.plot(v,t[num],color=colors[num],label=(k+' E=%f Max=%f'%(gp_results[k].sum()/len(etalon),gp_results[k].max()))) # более красивое
     num+=1
 plt.legend()
 #################################################################
