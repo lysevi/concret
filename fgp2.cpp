@@ -32,7 +32,7 @@ int    psize=200;
 int    max_steps=100;
 int    max_steps_ga=10;
 int    max_depth=5;
-double percent_to_learn=0.75;
+double percent_to_learn=0.5;
 double selection_percent=0.4;
 bool   print_only_best=false;
 int main(int argc,char*argv[])
