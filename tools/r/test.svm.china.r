@@ -27,3 +27,24 @@ run <- function(f) {
 }
 
 delta <- run(0.5) # 0.5 - размер обучающей выборки
+
+
+mixture.lm.test <- function(xs.train, ys.train, xs.test=xs.train, ys.test=ys.train, cost=1000, gamma=1E-4) {
+  trainset <- as.data.frame(xs.train)
+  trainset$Y <-  ys.train
+  svm.model <- lm(Y ~ ., data = trainset, cost = cost, gamma = gamma);
+  testset <- as.data.frame(xs.test)
+  pred <- predict(svm.model, testset)
+} ## assert(0.15 > mixture.svm.test(matrix(1:6,nrow=2), 1:2))    
+
+lm.run <- function(f) {
+  i <- sample(nrow(x),round(f*nrow(x))); 
+  nx=x[i,]
+  ny=y[i]
+  ##
+  ap.y=mixture.lm.test(nx,ny,x,y,gamma=1e-1)
+  # data.frame(delta=abs(y-ap.y),mean=mean(abs(y-ap.y)/y))
+  abs(y-ap.y)
+}
+
+delta.lm <- lm.run(0.5) # 0.5 - размер обучающей выборки
