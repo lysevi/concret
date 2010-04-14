@@ -23,11 +23,11 @@ t="- -- -o".split()
 
 f=file(sys.argv[1])
 func_name=f.readline().strip()
-etalon=np.array(map(lambda s: float(s.strip()),f.readline().split(';')))
+etalon=np.array(map(lambda s: float(s.strip()),f.readline().split(';'))[900:1030])
 gp_results={} # имя алгоритма:[знаяения]
 for l in f.readlines():
     splited=l.split(';')
-    gp_results[splited[0]]=np.array(map(float,splited[1:]))
+    gp_results[splited[0]]=np.array(map(float,splited[1:])[900:1030])
 
 #################################################################
 
@@ -67,7 +67,7 @@ plt.legend()
 # for k,v in rects.items():
 #     a1.append(v[0])# ((etalon-gp_results[k])/len(etalon)).sum()
 #     # abs(gp_results[k]*100/etalon).sum()/N - АРЕ
-#     a2.append(k+' E=%f'%(gp_results[k].sum()/len(etalon)))
+#     a2.append(k+' E=%f Max=%f'%(gp_results[k].sum()/len(etalon),gp_results[k].max()))
 
-#plt.legend(a1,a2)
+# plt.legend(a1,a2)
 plt.show()
