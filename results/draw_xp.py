@@ -23,11 +23,11 @@ t="- -- -o".split()
 
 f=file(sys.argv[1])
 func_name=f.readline().strip()
-etalon=np.array(map(lambda s: float(s.strip()),f.readline().split(';'))[900:1030])
+etalon=np.array(map(lambda s: float(s.strip()),f.readline().split(';'))[201:301])
 gp_results={} # имя алгоритма:[знаяения]
 for l in f.readlines():
     splited=l.split(';')
-    gp_results[splited[0]]=np.array(map(float,splited[1:])[900:1030])
+    gp_results[splited[0]]=np.array(map(float,splited[1:])[201:301])
 
 #################################################################
 
@@ -58,8 +58,8 @@ plt.legend()
 #     #rects[k]=plt.bar(ind, v, width,color=colors[num])
 #     num+=1
 
-# plt.ylabel(u'Величина ошибки')
-# plt.xlabel(u'Номер испытания')
+plt.ylabel(u'Величина ошибки')
+plt.xlabel(u'Номер испытания')
 # plt.xticks(ind+width, list(range(len(etalon))))
 
 # a1=[]#etalon_rects[0]]
