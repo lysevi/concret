@@ -36,14 +36,14 @@ print "Values: ",values
 #################################################################
 N=1
 ind = np.arange(N)  # the x locations for the groups
-width = 0.01        # the width of the bars
+width = 0.15        # the width of the bars
 
 plt.subplot(111)
 rects={}
 num=0
 print len(values)
 for i in range(len(values)):
-    ind=ind+width+width/10.0
+    ind=ind+width+width/20.0
     print "v=",values[i]
     rects[i]=plt.bar(ind, values[i], width,color=colors[num]) # более красивое
     num+=1
