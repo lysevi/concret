@@ -27,7 +27,7 @@ names=[]
 values=[]
 for line in in_file.readlines():
     sl=filter(not_empty,strip_all(line.split(';')))
-    names.append(sl[0])
+    names.append(unicode(sl[0],"utf-8"))
     values.append([float(sl[1])])
 
 print "GA: ",names

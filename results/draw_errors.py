@@ -26,7 +26,7 @@ etalon=np.array(map(lambda s: float(s.strip()),f.readline().split(';')))
 gp_results={} # имя алгоритма:[знаяения]
 for l in f.readlines():
     splited=l.split(';')
-    gp_results[splited[0]]=np.array(map(float,splited[1:]))
+    gp_results[unicode(splited[0],"utf-8")]=np.array(map(float,splited[1:]))
 
 #################################################################
 N=len(etalon)
@@ -54,7 +54,7 @@ a2=[]#func_name]
 for k,v in rects.items():
     a1.append(v[0])# ((etalon-gp_results[k])/len(etalon)).sum()
     # abs(gp_results[k]*100/etalon).sum()/N - АРЕ
-    a2.append(k+' E=%f'%(abs((etalon-gp_results[k])/len(etalon)).sum()))
+    a2.append(k)#+' E=%f'%(abs((etalon-gp_results[k])/len(etalon)).sum()))
 
 plt.legend(a1,a2)
 plt.show()
