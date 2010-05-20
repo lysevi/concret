@@ -41,7 +41,7 @@ print len(etalon)
 for k,v in gp_results.items():
     ind=ind+width+width/20.0
     print k,len(v),ind
-    rects[k]=plt.bar(ind, abs(etalon-v), width,color=colors[num]) # более красивое
+    rects[k]=plt.bar(ind, abs(etalon-v)/N, width,color=colors[num]) # более красивое
     #rects[k]=plt.bar(ind, v, width,color=colors[num])
     num+=1
 
@@ -54,7 +54,9 @@ a2=[]#func_name]
 for k,v in rects.items():
     a1.append(v[0])# ((etalon-gp_results[k])/len(etalon)).sum()
     # abs(gp_results[k]*100/etalon).sum()/N - АРЕ
-    a2.append("\n".join(k.split()))#+' E=%f'%(abs((etalon-gp_results[k])/len(etalon)).sum()))
+    error=abs(etalon-gp_results[k])/N
+    a2.append(k+' E=%f'%(error.sum()/N))
+
 
 plt.legend(a1,a2)
 plt.show()

@@ -56,7 +56,7 @@ a1=[]
 a2=[]
 for k,v in rects.items():
     a1.append(v[0])
-    a2.append("\n".join(names[k].split())+' D='+str(values[k][0]))
+    a2.append(names[k]+' D='+str(values[k][0]))
 
 plt.legend(a1,a2)
 plt.show()
