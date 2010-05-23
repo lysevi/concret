@@ -18,15 +18,23 @@ if len(sys.argv)==1:
     print "usage: ",sys.argv[0]," filename"
     sys.exit()
 
+params={
+    'backend': 'ps',
+    'text.fontsize': 10,
+    'legend.fontsize': 10
+    }
+plt.rcParams.update(params)
+
 colors="g r w c m y k".split()
 
 f=file(sys.argv[1])
 func_name=f.readline().strip()
 etalon=np.array(map(lambda s: float(s.strip()),f.readline().split(';')))
+etalon=etalon[:24]
 gp_results={} # имя алгоритма:[знаяения]
 for l in f.readlines():
     splited=l.split(';')
-    gp_results[unicode(splited[0],"utf-8")]=np.array(map(float,splited[1:]))
+    gp_results[unicode(splited[0],"utf-8")]=np.array(map(float,splited[1:][:24]))
 
 #################################################################
 N=len(etalon)
