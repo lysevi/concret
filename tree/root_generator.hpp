@@ -14,12 +14,12 @@ namespace Tree
   class RootGenerator:public Generator
   {
   public:
-    RootGenerator(FunctionDB*fdb,int max_depth,int root_function_number,int second_layer_func_number);
+    RootGenerator(FunctionDB*fdb,int max_depth,int root_function_number,ivector &second_layer_func_number);
     int get_rnd_function_number();
     Tree::Tree generate();
   protected:
     int m_root_function_number;
-    int m_second_layer_func_number;
+    ivector m_second_layer_func_number;
   };
 };
 #endif

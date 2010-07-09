@@ -122,7 +122,9 @@ int main(int argc,char*argv[])
   }
 
   LOG("Root Generator");
-  Tree::Generator*root_gnrt=new Tree::RootGenerator(fdb,2,0,1);
+  ivector tiv(1);
+  tiv[0]=1;
+  Tree::Generator*root_gnrt=new Tree::RootGenerator(fdb,2,0,tiv);
   for(int i=0;i<5;++i){
     Tree::Tree t(root_gnrt->generate());
     LOG(" ==> "<<t.to_str());

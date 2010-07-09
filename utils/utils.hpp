@@ -76,6 +76,14 @@ std::vector<T>&operator<<(std::vector<T>&l,T elem)
   return l;
 }
 
+template<class T>
+std::vector<T>&operator<<(std::vector<T>&l,std::vector<T>&r)
+{
+  for(int i=0; i<r.size();++i)
+    l.push_back(r[i]);
+  return l;
+}
+
 template<class K,class V>
 std::vector<K> keys(const std::map<K,V>&m)
 {

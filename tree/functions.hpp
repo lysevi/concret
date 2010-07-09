@@ -9,7 +9,7 @@ namespace Tree
   {
     FunctionDB* fdb;
     int root_number;
-    int second_layer;
+    ivector second_layer;
   };
   
   FunctionDB* std_functions_db();

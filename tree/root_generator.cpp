@@ -6,7 +6,7 @@
 namespace Tree
 {
   RootGenerator::RootGenerator(FunctionDB*fdb,int max_depth,
-			       int root_function_number,int second_layer_func_number):Generator(fdb,max_depth),
+			       int root_function_number,ivector&second_layer_func_number):Generator(fdb,max_depth),
 										      m_root_function_number(root_function_number),
 										      m_second_layer_func_number(second_layer_func_number)
   {}
@@ -15,7 +15,7 @@ namespace Tree
   {
     int fnum=m_functions[m_rnd.uniform(0,m_functions.size()-1)];
     while((fnum==m_root_function_number)          // Функция из конря и второго слоя не учавствет
-	  ||(fnum==m_second_layer_func_number))
+	  ||(in(m_second_layer_func_number.begin(),m_second_layer_func_number.end(),fnum)))
       fnum=m_functions[m_rnd.uniform(0,m_functions.size()-1)];
     return fnum;
   }
@@ -28,11 +28,11 @@ namespace Tree
     int root_num=result.add_node(root_func);
     result.set_root(root_num);
     FunctionNode*node=(FunctionNode*)((*m_fdb)[root_func].get());
-    FunctionNode*second_layer=(FunctionNode*)((*m_fdb)[m_second_layer_func_number].get());
+    FunctionNode*second_layer=(FunctionNode*)((*m_fdb)[m_second_layer_func_number[0]].get());
     
     for(int i=0;i<node->argcount();++i){
       // Устанавливаем аргументы корня
-      int sub_root=result.add_node(m_second_layer_func_number);
+      int sub_root=result.add_node(m_second_layer_func_number[0]);
       result.connect(root_num,sub_root);
       // Устанавливаем аргументы второго слоя
       for(int j=0;j<second_layer->argcount();++j){
