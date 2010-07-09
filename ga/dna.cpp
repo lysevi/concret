@@ -41,7 +41,7 @@ int&dna::operator[](int index)
 
 float dna::get(int index)const
 {
-  massert((index<0)&&(index>m_genom.size()));
+  //massert((index<0)&&(index>m_genom.size()));
   return bin2real(m_genom[index]);
 }
 

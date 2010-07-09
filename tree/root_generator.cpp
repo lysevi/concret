@@ -20,6 +20,12 @@ namespace Tree
     return fnum;
   }
 
+  int RootGenerator::get_rnd_function_number_from_second_layer()
+  {
+    int fnum=m_rnd.uniform(0,m_second_layer_func_number.size()-1);
+    return fnum;
+  }
+
   Tree::Tree RootGenerator::generate()
   {
     Tree result;
@@ -28,11 +34,12 @@ namespace Tree
     int root_num=result.add_node(root_func);
     result.set_root(root_num);
     FunctionNode*node=(FunctionNode*)((*m_fdb)[root_func].get());
-    FunctionNode*second_layer=(FunctionNode*)((*m_fdb)[m_second_layer_func_number[0]].get());
-    
+    int sl_funcs=get_rnd_function_number_from_second_layer();
+    FunctionNode*second_layer=(FunctionNode*)((*m_fdb)[m_second_layer_func_number[sl_funcs]].get());
+
     for(int i=0;i<node->argcount();++i){
       // Устанавливаем аргументы корня
-      int sub_root=result.add_node(m_second_layer_func_number[0]);
+      int sub_root=result.add_node(m_second_layer_func_number[sl_funcs]);
       result.connect(root_num,sub_root);
       // Устанавливаем аргументы второго слоя
       for(int j=0;j<second_layer->argcount();++j){
