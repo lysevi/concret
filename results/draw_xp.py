@@ -22,12 +22,14 @@ colors="b r g".split()
 t="- -- -o".split()
 
 f=file(sys.argv[1])
+_from=303
+_to=404
 func_name=f.readline().strip()
-etalon=np.array(map(lambda s: float(s.strip()),f.readline().split(';'))[201:301])
+etalon=np.array(map(lambda s: float(s.strip()),f.readline().split(';'))[_from:_to])
 gp_results={} # имя алгоритма:[знаяения]
 for l in f.readlines():
     splited=l.split(';')
-    gp_results[splited[0]]=np.array(map(float,splited[1:])[201:301])
+    gp_results[splited[0]]=np.array(map(float,splited[1:])[_from:_to])
 
 #################################################################
 
