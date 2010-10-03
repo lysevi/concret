@@ -67,7 +67,7 @@ void GpFitness::check_solution(const p_dna&d,Concrete::CData*cdata)
     double v=t.eval(vm);
     double y_etalon=m_cdata->y_for_xp(i);
     LOG(i<<";"<<y_etalon<<";"<<v);
-    double diff=fabs(v-y_etalon)/y_etalon*100;
+    double diff=fabs(v-y_etalon);
     result+=diff;
     if (diff>worst_percent)
       worst_percent=diff;
@@ -89,7 +89,7 @@ double GpFitness::operator()(const p_dna&d)
 
     double v=t.eval(vm);
     double etalon=m_cdata->y_for_xp(i);
-    double value=fabs(v-etalon)/etalon*100.0;
+    double value=fabs(v-etalon);
     result+=value;
   }
   return result/m_numbers.size();
@@ -107,7 +107,7 @@ double GpFitness::max_distance(const p_dna&d)
 
     double v=t.eval(vm);
     double etalon=m_cdata->y_for_xp(i);
-    double value=fabs(v-etalon)/etalon*100.0;
+    double value=fabs(v-etalon);
     result+=value;
     if (value>worst_percent)
       worst_percent=value;
