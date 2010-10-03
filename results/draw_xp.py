@@ -18,8 +18,8 @@ if len(sys.argv)==1:
     print "usage: ",sys.argv[0]," filename"
     sys.exit()
 
-colors="b r g".split()
-t="- -- -o".split()
+colors="b r g k".split()
+t="- -- -o :".split()
 
 f=file(sys.argv[1])
 _from=303
