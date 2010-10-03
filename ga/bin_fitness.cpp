@@ -157,7 +157,7 @@ double bin_sugeno::operator()(const p_dna&d)
     double down=std::accumulate(alphas.begin(),alphas.end(),0.0);
     double etalon=m_cdata->y_for_xp(m_numbers[i]);
     double out=up/down; //Выход, для текущего набора
-    double delta=fabs(out-etalon)/etalon*100.0;
+    double delta=fabs(out-etalon);
 
     errors.push_back(delta);
   }
