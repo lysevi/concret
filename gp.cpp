@@ -11,8 +11,8 @@ const double target_value=8.0; // ГОСТ 10180-09
 const double mtn_raiting=0.9;
 const int    resize_data=1; // для BOOTSTRAP
 
-int    psize=50;
-int    max_steps=100;
+int    psize=100;
+int    max_steps=10;
 int    max_depth=5;
 double percent_to_learn=0.5;
 double selection_percent=0.4;
@@ -29,7 +29,7 @@ int main(int argc,char*argv[])
   Concrete::CData cdata(argv[1]);
   cdata.init();
 
-  Concrete::CData bt_cdata=cdata.bootstrap(resize_data,0.05);
+  Concrete::CData bt_cdata=cdata;//.bootstrap(resize_data,0.05);
 
   Tree::FunctionDB* fdb=Tree::std_functions_db();
 

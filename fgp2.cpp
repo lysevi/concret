@@ -28,8 +28,8 @@ const double mtn_raiting=0.9;
 const int    resize_data=1; // для BOOTSTRAP
 const short  mtn_bit_count=10; // количество мутирующих битов в гене
 
-int    psize=200;
-int    max_steps=100;
+int    psize=10;
+int    max_steps=5;
 int    max_steps_ga=10;
 int    max_depth=5;
 double percent_to_learn=0.5;

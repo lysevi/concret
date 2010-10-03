@@ -25,8 +25,8 @@ const double target_value=8.0; // ГОСТ 10180-09
 const double mtn_raiting=1.0;
 const int    resize_data=1; // для BOOTSTRAP
 
-int    psize=200;
-int    max_steps=100;
+int    psize=10;
+int    max_steps=5;
 int    max_depth=5;
 double percent_to_learn=0.5;
 double selection_percent=0.4;
