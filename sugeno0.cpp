@@ -86,7 +86,7 @@ int main(int argc,char*argv[])
     double out=0.0;
     if (down!=0.0)
       out=up/down; //Выход, для текущего набора
-    double delta=fabs(out-etalon)/etalon*100.0;
+    double delta=fabs(out-etalon)/cdata.size();
 
     errors.push_back(delta);
 
