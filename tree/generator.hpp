@@ -11,7 +11,7 @@ namespace Tree
   public:
     Generator(FunctionDB*fdb,int max_depth,bool fly_mode=false);
     virtual int get_rnd_function_number();
-    virtual Tree::Tree generate();
+    virtual Tree generate();
   protected:
     void generate_sub_tree(Tree&tree,int root,int depth);
   protected:

@@ -26,7 +26,7 @@ namespace Tree
     return fnum;
   }
 
-  Tree::Tree RootGenerator::generate()
+  Tree RootGenerator::generate()
   {
     Tree result;
     result.set_fdb(m_fdb);
