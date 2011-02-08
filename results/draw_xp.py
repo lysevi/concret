@@ -19,7 +19,7 @@ if len(sys.argv)==1:
     sys.exit()
 
 colors="b r g k".split()
-t="- -- -o :".split()
+t="- -o -- :".split()
 
 f=file(sys.argv[1])
 _from=303
