@@ -18,12 +18,13 @@ if len(sys.argv)==1:
     print "usage: ",sys.argv[0]," filename"
     sys.exit()
 
-params={
-    'backend': 'ps',
-    'text.fontsize': 10,
-    'legend.fontsize': 10
-    }
-plt.rcParams.update(params)
+from matplotlib import rc
+rc('font',**{'family':'serif'})
+rc('text', usetex=True)
+rc('text.latex',unicode=True)
+rc('text.latex',preamble='\usepackage[utf8]{inputenc}')
+rc('text.latex',preamble='\usepackage[russian]{babel}')
+
 
 colors="g r w c m y k".split()
 
