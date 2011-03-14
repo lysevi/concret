@@ -25,7 +25,6 @@ rc('text.latex',unicode=True)
 rc('text.latex',preamble='\usepackage[utf8]{inputenc}')
 rc('text.latex',preamble='\usepackage[russian]{babel}')
 
-
 colors="g r w c m y k".split()
 
 f=file(sys.argv[1])
@@ -68,4 +67,8 @@ for k,v in rects.items():
 
 
 plt.legend(a1,a2)
-plt.show()
+if len(sys.argv)==3:
+    print sys.argv[-1]
+    plt.savefig(sys.argv[-1])
+else:
+    plt.show()
