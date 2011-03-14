@@ -19,6 +19,13 @@ if len(sys.argv)==1:
     print "usage: ",sys.argv[0]," file"
     sys.exit()
 
+from matplotlib import rc
+rc('font',**{'family':'serif'})
+rc('text', usetex=True)
+rc('text.latex',unicode=True)
+rc('text.latex',preamble='\usepackage[utf8]{inputenc}')
+rc('text.latex',preamble='\usepackage[russian]{babel}')
+
 in_file=file(sys.argv[1])
 ga_name=in_file.readline()
 print ga_name.strip()
