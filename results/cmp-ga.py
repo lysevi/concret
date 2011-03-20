@@ -1,5 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
+
+#from matplotlib import rc
+#rc('font',**{'family':'serif'})
+#rc('text', usetex=True)
+#rc('text.latex',unicode=True)
+#rc('text.latex',preamble='\usepackage[utf8]{inputenc}')
+#rc('text.latex',preamble='\usepackage[russian]{babel}')
 
 import sys
 import numpy as np
@@ -34,7 +41,7 @@ names=[]
 values=[]
 for line in in_file.readlines():
     sl=filter(not_empty,strip_all(line.split(';')))
-    names.append(unicode(sl[0],"utf-8"))
+    names.append(sl[0])
     values.append([int(sl[1])])
 
 print "GA: ",names
@@ -63,7 +70,7 @@ a1=[]
 a2=[]
 for k,v in rects.items():
     a1.append(v[0])
-    a2.append(names[k]+' D='+str(values[k][0]))
+    a2.append(unicode(names[k]+' D='+str(values[k][0])))
 
 plt.legend(a1,a2)
 plt.show()
